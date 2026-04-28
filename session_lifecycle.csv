@@ -1,0 +1,8 @@
+User Action,Frontend (FE) Logic,Backend (BE) Logic / API,Database (DB) Update,Browser State (Cookies)
+1. Enters Credentials,User types email/pass in app/page.tsx and clicks Log in,POST /api/login receives the credentials and eventId,None yet,No session cookie
+2. Auth Verification,FE waits for the JSON response,attemptLogin() in lib/accounts.ts verifies password against SQLite,None,No session cookie
+3. Session Creation,(Waiting...),createSession() in lib/session.ts generates a randomUUID,INSERT into sessions table (ID email and 24h expiry),Set-Cookie header sent with sessionId=xyz...
+4. Redirect,router.push('/home') is triggered in app/page.tsx,None,None,Browser saves sessionId to Disk
+5. Accessing Home,User lands on /home,getSession() in lib/session.ts is called by the Server Component,SELECT from sessions to check if ID exists and isn't expired,Browser automatically sends sessionId in header
+6. Returns Later,User closes tab then re-opens /home 2 hours later,Browser sends the request to /home,getSession() runs again; verifies ID still exists in SQLite,SELECT from sessions table,sessionId remains in browser storage
+7. Manual Logout,User clicks Log out button,handleLogout in LogoutButton.tsx calls POST /api/logout,deleteSession() is called,DELETE row from sessions table matching the ID,Browser receives instruction to Delete the cookie

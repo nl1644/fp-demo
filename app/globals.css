@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-theme: #f97316;
+  --color-theme-hover: #ea580c;
+}
+
+@layer base {
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+}
