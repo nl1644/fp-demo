@@ -9,12 +9,14 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("demo@example.com");
   const [password, setPassword] = useState("password123");
-  const [fpAgent, setFpAgent] = useState("");
+  const [fpAgent, setFpAgent] = useState<ReturnType<
+    typeof Fingerprint.start
+  > | null>(null);
   const [copied, setCopied] = useState(false);
   const [otpRequired, setOtpRequired] = useState(false);
   const [otp, setOtp] = useState("");
   const [pendingEventId, setPendingEventId] = useState("");
-  const [pendingSealedResult, setPendingSealedResult] = useState(null);
+  const [pendingSealedResult, setPendingSealedResult] = useState<string | null>(null);
   const [result, setResult] = useState<{
     type: "success" | "error";
     message: string;
@@ -37,8 +39,9 @@ export default function LoginPage() {
 
   const getFP = async (): Promise<{
     eventId: string;
-    sealedResult: Unit8Array | null;
+    sealedResult: string | null;
   }> => {
+    if (!fpAgent) return { eventId: "", sealedResult: null };
     try {
       const result = await fpAgent.get();
       const id = result.event_id || "";
@@ -49,7 +52,7 @@ export default function LoginPage() {
       console.log("Visitor ID: ", result.visitor_id);
       return {
         eventId: id,
-        sealedResult: result.sealed_result.base64() || null,
+        sealedResult: result.sealed_result?.base64() ?? null,
       };
     } catch (e) {
       console.error("Fingerprint error:", e);

@@ -36,6 +36,20 @@ export function initDb() {
       chargeback INTEGER NOT NULL DEFAULT 0,
       createdAt INTEGER NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS identification_events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      timestamp TEXT NOT NULL,
+      event_id TEXT,
+      visitor_id TEXT,
+      confidence_score REAL,
+      ip_address TEXT,
+      suspect_score REAL,
+      vpn INTEGER NOT NULL DEFAULT 0,
+      developer_tool INTEGER NOT NULL DEFAULT 0,
+      country_name TEXT,
+      incognito INTEGER NOT NULL DEFAULT 0
+    );
   `);
 }
 
