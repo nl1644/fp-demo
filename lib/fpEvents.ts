@@ -8,10 +8,9 @@ export interface FpEvent {
   confidence_score: number | null;
   ip_address: string | null;
   suspect_score: number | null;
-  vpn: number;
-  developer_tool: number;
-  country_name: string | null;
-  incognito: number;
+  vpn: number | null;
+  developer_tool: number | null;
+  incognito: number | null;
 }
 
 export function insertFpEvent(data: Omit<FpEvent, "id">): void {

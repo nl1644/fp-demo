@@ -45,10 +45,9 @@ export function initDb() {
       confidence_score REAL,
       ip_address TEXT,
       suspect_score REAL,
-      vpn INTEGER NOT NULL DEFAULT 0,
-      developer_tool INTEGER NOT NULL DEFAULT 0,
-      country_name TEXT,
-      incognito INTEGER NOT NULL DEFAULT 0
+      vpn INTEGER,
+      developer_tool INTEGER,
+      incognito INTEGER
     );
   `);
 }

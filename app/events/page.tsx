@@ -17,7 +17,8 @@ export default function EventsPage() {
 
   useEffect(() => { fetchEvents(); }, []);
 
-  const bool = (val: number) =>
+  const bool = (val: number | null) =>
+    val == null ? <span className="text-gray-300 text-xs">—</span> :
     val ? (
       <span className="text-xs px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-200">Yes</span>
     ) : (
