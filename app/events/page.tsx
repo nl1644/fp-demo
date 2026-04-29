@@ -96,7 +96,7 @@ export default function EventsPage() {
                 {events.map((e) => (
                   <tr
                     key={e.id}
-                    className="text-gray-700 hover:bg-orange-50/40 transition-colors"
+                    className="text-gray-700 hover:bg-teal-50/40 transition-colors"
                   >
                     <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">
                       {e.timestamp}

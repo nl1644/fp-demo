@@ -9,7 +9,7 @@ interface TourCardProps {
 
 export default function TourCard({ tour, onBook }: TourCardProps) {
   return (
-    <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white flex flex-col group hover:shadow-lg hover:border-orange-200 transition-all duration-300">
+    <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white flex flex-col group hover:shadow-lg hover:border-teal-200 transition-all duration-300">
       <div className="relative h-48 overflow-hidden">
         <img
           src={tour.image}

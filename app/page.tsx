@@ -4,6 +4,7 @@ import * as Fingerprint from "@fingerprint/agent";
 import { useState, useEffect } from "react";
 import { env } from "@/lib/env";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -172,7 +173,7 @@ export default function LoginPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute -left-[10%] -top-[10%] h-[60%] w-[60%] rounded-full bg-white opacity-10 blur-[120px]"></div>
           <div className="absolute -bottom-[20%] -right-[10%] h-[70%] w-[70%] rounded-full bg-yellow-300 opacity-20 blur-[120px]"></div>
-          <div className="absolute left-[20%] top-[30%] h-[40%] w-[40%] rounded-full bg-orange-300 opacity-15 blur-[100px]"></div>
+          <div className="absolute left-[20%] top-[30%] h-[40%] w-[40%] rounded-full bg-emerald-300 opacity-15 blur-[100px]"></div>
         </div>
 
         <div className="relative z-10 flex flex-col items-center text-center p-12">
@@ -200,9 +201,6 @@ export default function LoginPage() {
 
       {/* Right Half: Login Box */}
       <div className="flex w-full flex-col items-center justify-center bg-amber-50 p-8 lg:w-1/2">
-        <button id="getFP" type="button" onClick={getFP}>
-          Get VisitorID
-        </button>
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-10">
             <h1 className="text-center text-3xl font-bold text-gray-900 mb-8">
@@ -356,6 +354,12 @@ export default function LoginPage() {
           >
             {copied ? "Copied!" : "sub_DaudvKyGwI130N"}
           </p>
+          <Link
+            href="/admin"
+            className="block text-center text-xs text-gray-400 hover:text-gray-600 mt-6 transition-colors"
+          >
+            Admin
+          </Link>
         </div>
       </div>
 
