@@ -16,7 +16,9 @@ export default function LoginPage() {
   const [otpRequired, setOtpRequired] = useState(false);
   const [otp, setOtp] = useState("");
   const [pendingEventId, setPendingEventId] = useState("");
-  const [pendingSealedResult, setPendingSealedResult] = useState<string | null>(null);
+  const [pendingSealedResult, setPendingSealedResult] = useState<string | null>(
+    null,
+  );
   const [result, setResult] = useState<{
     type: "success" | "error";
     message: string;
@@ -28,6 +30,7 @@ export default function LoginPage() {
     }
     const fp = Fingerprint.start({
       apiKey: env.fpPublicKey,
+      endpoints: "https://metrics.aionestopllc.com",
       // cache: {
       //   storage: "sessionStorage",
       //   duration: "optimize-cost",
