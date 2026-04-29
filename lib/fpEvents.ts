@@ -14,12 +14,14 @@ export interface FpEvent {
 }
 
 export function insertFpEvent(data: Omit<FpEvent, "id">): void {
-  db.prepare(`
+  db.prepare(
+    `
     INSERT INTO identification_events
-      (timestamp, event_id, visitor_id, confidence_score, ip_address, suspect_score, vpn, developer_tool, country_name, incognito)
+      (timestamp, event_id, visitor_id, confidence_score, ip_address, suspect_score, vpn, developer_tool, incognito)
     VALUES
-      (@timestamp, @event_id, @visitor_id, @confidence_score, @ip_address, @suspect_score, @vpn, @developer_tool, @country_name, @incognito)
-  `).run(data);
+      (@timestamp, @event_id, @visitor_id, @confidence_score, @ip_address, @suspect_score, @vpn, @developer_tool, @incognito)
+  `,
+  ).run(data);
 }
 
 export function getAllFpEvents(): FpEvent[] {

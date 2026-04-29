@@ -78,7 +78,6 @@ export default function EventsPage() {
                     "Visitor ID",
                     "Confidence",
                     "IP Address",
-                    "Country",
                     "Suspect Score",
                     "VPN",
                     "Dev Tools",
@@ -102,7 +101,7 @@ export default function EventsPage() {
                     <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">
                       {e.timestamp}
                     </td>
-                    <td className="px-4 py-3 font-mono text-xs text-gray-400 max-w-[140px] truncate">
+                    <td className="px-4 py-3 font-mono text-xs text-gray-400 ">
                       {e.event_id ?? "—"}
                     </td>
                     <td className="px-4 py-3 font-mono text-xs text-gray-600">

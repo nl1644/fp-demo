@@ -5,6 +5,14 @@ import { env } from "./env";
 const db = new Database(join(process.cwd(), env.dbPath));
 
 export function initDb() {
+  // Migrate identification_events if it was created with old NOT NULL constraints
+  try {
+    db.prepare("INSERT INTO identification_events (timestamp, vpn) VALUES ('_chk', NULL)").run();
+    db.prepare("DELETE FROM identification_events WHERE timestamp = '_chk'").run();
+  } catch {
+    db.exec("DROP TABLE IF EXISTS identification_events");
+  }
+
   db.exec(`
     CREATE TABLE IF NOT EXISTS accounts (
       email TEXT PRIMARY KEY,
