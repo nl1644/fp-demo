@@ -27,7 +27,6 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (env.fpPublicKey) {
-      console.log("Fingerprint Public Key loaded:", env.fpPublicKey);
     }
     const fp = Fingerprint.start({
       apiKey: env.fpPublicKey,
@@ -38,7 +37,6 @@ export default function LoginPage() {
       // },
     });
     setFpAgent(fp);
-    console.log("Agent loaded.");
   }, []);
 
   const getFP = async (): Promise<{
